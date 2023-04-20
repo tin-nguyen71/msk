@@ -1,0 +1,54 @@
+aws_region            = "ap-southeast-1"  
+enable_msk            = true
+broker_instance_type  = "kafka.m5.xlarge"
+vpc_id                = "vpc-00aadbd61d1d65a25"
+subnet_tag            = "data-*"
+jmx_exporter_enabled  = false
+node_exporter_enabled = false
+cluster_name          = "msk-test-01"
+msk_configuration_name= "msk-test-configuration"  
+properties            = {"auto.create.topics.enable"="false", "default.replication.factor"="3", "min.insync.replicas"="2", "num.partitions"="1", "num.replica.fetchers"="2"}
+kafka_version         = "2.7.2"
+client_broker         = "TLS_PLAINTEXT"  
+broker_volume_size    = 1000  
+number_of_broker_nodes= 3 
+enhanced_monitoring   = "DEFAULT"
+encryption_in_cluster = true
+encryption_at_rest_kms_key_arn = ""
+certificate_authority_arns = []
+client_sasl_scram_enabled = false
+client_sasl_scram_secret_association_arns = []
+client_sasl_iam_enabled = false
+client_tls_auth_enabled = true
+enable_jmx_exporter = true
+enable_node_exporter = true
+cloudwatch_logs_enabled = false
+cloudwatch_logs_log_group = ""
+firehose_logs_enabled = false
+firehose_delivery_stream = ""
+s3_logs_enabled = false
+s3_logs_bucket = ""
+s3_logs_prefix = ""
+storage_autoscaling_max_capacity = 1000
+storage_autoscaling_disable_scale_in = false
+storage_autoscaling_target_value = 60
+security_group_rules             = [
+      {
+        type                     = "ingress"
+        from_port                = 9092
+        to_port                  = 9094
+        protocol                 = "tcp"
+        cidr_blocks              = []
+        source_security_group_id = "123"
+        self                     = null
+      },
+      {
+        type                     = "egress"
+        from_port                = 0
+        to_port                  = 0
+        protocol                 = "-1"
+        cidr_blocks              = ["0.0.0.0/0"]
+        source_security_group_id = null
+        self                     = null
+      },
+    ]
